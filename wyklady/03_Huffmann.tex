@@ -15,9 +15,9 @@ Dążymy do użycia jak najmniejszej ilości bitów.\\
 \end{center}
 
 Przy stałej długości słów kodowych zakodowanych plik ma: $58*3=174$ bity. \\
-Przy zmiennej długości słów kodowych zakodowany plik ma: $3 \cdot 10+2 \cdot 15+2 \cdot 12+5 \cdot 3+4 \cdot 4+2 \cdot 13+5 \cdot 1 = 146$ bitów. Oszczędzamy około 15$\%$ .
+Przy zmiennej długości słów kodowych zakodowany plik ma: $3 \cdot 10+2 \cdot 15+2 \cdot 12+5 \cdot 3+4 \cdot 4+2 \cdot 13+5 \cdot 1 = 146$ bitów. Oszczędzamy około 16$\%$ .
 
-Przy kodowaniu ze zmienną długością słów kodowych chcemy, żeby spełniony był warunek, że żadne słowo nie jest prefiksem (początkiem) innego słowa. Takie kody nazywamy prefiksowymi.
+Przy kodowaniu ze zmienną długością słów kodowych chcemy, żeby spełniony był warunek, że żadne słowo nie jest prefiksem (początkiem) innego słowa. Takie kody nazywamy prefiksowymi. 
 
 \textbf{Słowo 0001001 można zdekodować za pomocą kodu 3. na dwa sposoby:}
 \begin{itemize}
@@ -67,9 +67,8 @@ Etykietujemy wierzchołki wewnętrzne drzewa w taki sposób, aby każdy wierzcho
 Niech:
 \begin{itemize}
 \item $C$ będzie alfabetem
-\item $f(c)$ liczbą występowania znaku $c$
-\item $d_T(c)$ głębokością liścia $c$ w drzewie 
-\item $T$ (równą długości słowa kodowego reprezentującego $c$)
+\item $f(c)$ będzie liczbą wystąpień znaku $c$
+\item $d_T(c)$ będzie głębokością liścia $c$ w drzewie $T$ (równą długości słowa kodowego reprezentującego $c$)
 \end{itemize}  Liczba bitów potrzebnych do zakodowania całego pliku wynosi 
 $$B(T) = \sum_{c \in C} f(c) \cdot d_T(c)$$
 
@@ -91,8 +90,8 @@ Załóżmy, że:
 \end{itemize}
 %Ilustracja
 
-Tworzymy nowe drzewo $T'$ poprzez usunięcie $v$ z drzewa i dodanie krawędzi $uw$ o ile $v$ nie jest korzeniem.
-Jeżeli $B(T) < B(T')$ zachodzi sprzeczność, ponieważ $T$ miało być drzewem optymalnym.
+Tworzymy nowe drzewo $T'$ poprzez usunięcie $v$ z drzewa i dodanie krawędzi $uw$ o ile $v$ nie jest korzeniem. $T'$ jest optymalnym kodem prefiksowym. 
+$B(T) < B(T')$ ponieważ usunęliśmy jeden wierzchołek w drzewie, zachodzi sprzeczność, ponieważ $T$ miało być drzewem optymalnym.
 
 \subsubsection{Algorytm tworzenia drzewa reprezentującego optymalny kod prefiksowy}
 Algorytm tworzenia drzewa reprezentującego optymalny kod prefiksowy dla $(C,f)$. 
@@ -133,7 +132,7 @@ Algorytm konstruuje drzewa binarne.
 $O(1)$
 $O(1)$
 $n-1$ razy
-	wnetrze petli $\log n$ razy
+	wnetrze petli $\log n$
 \end{lstlisting}
 \underline{Ostateczna złożoność algorytmu to $O(n \log n)$}
 
@@ -142,9 +141,9 @@ $n-1$ razy
 
 \textbf{Dowód} Znajdujemy drzewo reprezentujące kod optymalny, w którym liście reprezentujące $x$ i $y$ są bliźniakami i są najgłębiej w drzewie. Niech $T$ będzie drzewem reprezentującym kod optymalny i niech $a$ i $b$ będą liśćmi bliźniakami najgłębiej w T. 
 Bez straty ogólności możemy założyć:
-$$ f(x) \leq f(y); f(a) \leq f(b) $$
-ponieważ $f(x)$ i $f(y)$ są najmniejszymi liczbami:
-$$ f(x) \leq f(a); f(y) \leq f(b) $$
+$$ f(x) \leq f(y) \land f(a) \leq f(b) $$
+ponieważ $f(x)$ i $f(y)$ są najmniejszymi wartościami funkcji $f$:
+$$ f(x) \leq f(a) \land f(y) \leq f(b) $$
 Niech $T'$ będzie drzewem powstałym z $T$ przez zamianę miejscami $x$ z $a$
 $$ B(T) - B(T') = \sum_{c \in C} f(c) \cdot d_T(c) - \sum_{c \in C} f(c) \cdot d_{T'}(c) $$
 $$ = f(x) \cdot d_T(x) + f(a) \cdot d_T(a) - f(x) \cdot d_{T'}(x) - f(a) \cdot d_{T'}(a) $$
