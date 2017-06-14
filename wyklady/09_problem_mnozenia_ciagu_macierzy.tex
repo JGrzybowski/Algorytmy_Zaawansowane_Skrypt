@@ -98,7 +98,7 @@ $$(A_1 * A_2 * A_3) * (A_4 * A_5)$$
 $$s(1,3) = 1$$
 $$s(4,5) = 4$$
 $$(A_1 * (A_2 * A_3)) * (A_4 * A_5)$$
-$s(2,3) = 2$$
+$$s(2,3) = 2$$
 $$(A_1 * (A_2 * A_3)) * (A_4 * A_5)$$
 
 Podstawy metody programowania dynamicznego
@@ -116,37 +116,35 @@ W klasycznej metodzie programowania kdynamicznego ozwiązanie budujemy od dołu 
 Przykład w mnożeniu macirzy
 Jak poprzednio umieszczamy rozwiązania podproblemów w tablicy m(i.j) Dopóki nie mamy rozwiązanego podproblemu (i,j)  m(i,j) = infinity. Po obliczeniu wartości m(i,j) umieszczamy ją w tablicy i używamy jej przy następnych wywołaniach bez obliczania.
 
-\begin{enumerate}
-Algorytm LookupChain(p,i,j) //p - ciąg wymiarów macierzy
-if m(i,j) < infinity return m(i,j)
-if j = i 
-	m(i,j) <- 0 
+\begin{lstlisting}[caption={Algorytm LookupChain(p,i,j) //p - ciąg wymiarów macierzy}]
+if $m(i,j) < infinity$ return $m(i,j)$
+if $j = i$ 
+	$m(i,j)$ <- $0$
 else
-	for k <- i to j-1
-		q <- LookupChain(p,i,k) + LookupChain(p,k+1,j) + p_{i-1} * p_k * p_j
-		if q < m(i,j)
-			m(i,j) <- q
-return m(i,j)
-\end{enumerate}
+	for $k$ <- $i$ to $j-1$
+		$q$ <- $LookupChain(p,i,k) + LookupChain(p,k+1,j) + p_{i-1} * p_k * p_j$
+		if $q < m(i,j)$
+			$m(i,j)$ <- $q$
+return $m(i,j)$
+\end{lstlisting}
 
-\begin{enumerate}
-Algorytm MemorizedMatrixChain(p)
+\begin{lstlisting}[caption={Algorytm MemorizedMatrixChain(p)}]
 n <- length(p) - 1
 for i <- 1 to n
 	for j <- i to n
 		m(i,j) <- infinity
 return LookupChain(p,i,n)
-\end{enumerate}
+\end{lstlisting}
 
 Złożoność 
-\begin{enumerate}
+\begin{lstlisting}
 $O(n)$
 $O(n^2)$
 $O(n^2)$
 $O(n^2)$
+\end{lstlisting}
 
 Każde z $O(n^2)$ pól tablicy $m$ jest wypełniane tylko raz modyfikowane, potem odwołanie do (i,j) zajmuje stały czas.
 Kiedy m(i,j) jest modyfikowane to zajmuje to $O(n)$ aby znaleźć jej najmniejszą wartość.
-\end{enumerate}
 Całkowity czas działania algorytmu wynosi $O(n^3)$
 
