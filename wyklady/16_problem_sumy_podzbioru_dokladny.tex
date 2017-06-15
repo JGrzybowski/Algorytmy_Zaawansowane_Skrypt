@@ -5,9 +5,9 @@ Poszukujemy zbioru $S'\subset S\ \Sigma_{x\in S'}x \rightarrow max\Sigma_{x\in S
 
 Jest to problem NP zupełny.
 
-\paragraph{Dowód:}Problem jest w NP. Dla instancji $(S,t)$ certyfikatem jest $S' \subset S$. Możemy sprawdzić w czasie wielomianowym czy $ \forall_{x \in S'} x = t $ 
+\paragraph{Dowód:}{Problem jest w NP. DLa instancji $(S,t)$ certyfikatem jest $S' \subset S$ Możemy sprawdzić w czasie wielomianowym czy $\forall_{x \in S'} x = t$}
 
-Pokażemy, że 3-SAT $ \leq p $ Subset-Sum 
+Pokażemy, że 3-SAT $\leq_p$ SUBSET\_SUM 
 
 $I$ - formuła 3-SAT w postaci CNF
 $$ x_1, x_2, x_3 - zmienne$$
@@ -16,7 +16,7 @@ $$ c_i = (x_a \lor x_b \lor x_c)$$
 
 Zakładamy że żadna klauzula nie zawiera jednocześnie zmiennej i jej negacji oraz żę każda zmienna występuje w przynajmniej jednej klauzuli.
 
-Załóżmy instancję $(S,t)$ problemu Subset-Sum dla $I$
+Załóżmy instancję $(S,t)$ problemu SUBSET\_SUM dla $I$
 
 Dla każdej zmiennej $x_i$ mamy 2 liczby $r_i$ oraz $r_i'$ n+m cyfrowe.
 
@@ -65,7 +65,8 @@ Rozwiązanie istnieje dla $I  x_1=1 , x_2=0, x_3=0$
 \paragraph{Lemat 1:}
 $$S={x_1, ..., x_n}$$
 $$P_0 = {0}$$
-$P_i = P_{i-1} \cup (P_{i-1} + x_i) $dla$ i=1, ..., n $
+$$P_i = P_{i-1} \cup (P_{i-1} + x_i) \text{ dla } i=1, \ldots, n$$
+
 Zbiór $P_n$ zawiera wszystkie możliwe sumy podzbiorów zbioru $S$
 
 \paragraph{Dowód:}{Pokażemy przez indukcję po i, że $P_i$ składa się ze wszystkich możliwych sum podzbiorów z $S$.
