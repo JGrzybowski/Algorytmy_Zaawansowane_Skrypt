@@ -115,21 +115,19 @@ W klasycznej metodzie programowania kdynamicznego ozwiązanie budujemy od dołu 
 Przykład w mnożeniu macirzy
 Jak poprzednio umieszczamy rozwiązania podproblemów w tablicy m(i.j) Dopóki nie mamy rozwiązanego podproblemu (i,j)  m(i,j) = infinity. Po obliczeniu wartości m(i,j) umieszczamy ją w tablicy i używamy jej przy następnych wywołaniach bez obliczania.
 
-\begin{lstlisting}
-Algorytm LookupChain($p,i,j$) //$p$ - ciag wymiarow macierzy
+\begin{lstlisting}[caption={Algorytm LookupChain(p,i,j) //p - ciąg wymiarów macierzy}]
 if $m(i,j) < \infty$ return $m(i,j)$
 if $j = i$ 
-	$m(i,j)$ <- 0 
+	$m(i,j)$ <- $0$
 else
-	for $k <- i$ to $j-1$
-		q <- LookupChain($p,i,k$) + LookupChain($p,k+1,j$) + $p_{i-1}$ * $p_k$ * $p_j$
+	for $k$ <- $i$ to $j-1$
+		$q$ <- LookupChain($p,i,k$) + LookupChain($p,k+1,j$) + $p_{i-1}$ * $p_k$ * $p_j$
 		if $q < m(i,j)$
 			$m(i,j)$ <- $q$
 return $m(i,j)$
 \end{lstlisting}
 
-\begin{lstlisting}
-Algorytm MemorizedMatrixChain($p$)
+\begin{lstlisting}[caption={Algorytm MemorizedMatrixChain(p)}]
 $n$ <- length($p$) - 1
 for $i$ <- 1 to $n$
 	for $j$ <- $i$ to $n$
