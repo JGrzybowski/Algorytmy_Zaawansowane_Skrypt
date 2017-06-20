@@ -1,5 +1,5 @@
 \paragraph{Problem najliczniejszego skojarzenia w grafie dwudzielnym}
-Skojarzenie w grafie G to zbiór rozłącznych krawędzi. Inaczej mówiąc to podzbiór $M$ zbioru $E$ taki, że każdy $v \in V$ należy do co najmniej jednej krawędzi z $M$.
+Skojarzenie w grafie G to zbiór rozłącznych krawędzi. Inaczej mówiąc to podzbiór $M$ zbioru $E$ taki, że każdy $v \in V$ należy do co najwyżej jednej krawędzi z $M$.
 
 Mówimy, że wierzchołek jest skojarzony gdy należy do krawędzi z $M$ i jest wolny, gdy nie należy do krawędzi z $M$. Tak samo krawędź skojarzona to taka należąca do $M$, a wolna nie należąca do $M$.
 
@@ -22,22 +22,21 @@ $G=(V,E)$, $M$ - skojarzenie w $G$.
 $M$ jest skojarzeniem najliczniejszym $\iff$ nie istnieje ścieżka rozszerzająca względem $M$.
 
 \paragraph{Dowód:}
-$\implies$ Jeśli P jest ścieżką rozszerzającą względem $M$ to $M' = M \div E(P)$ jest skojarzeniem liczniejszym od $M$.
+$\implies$ Jeśli P jest ścieżką rozszerzającą względem $M$ to $M' = M \div E(P)$ jest skojarzeniem liczniejszym od $M$. Otrzymujemy sprzeczność, ponieważ $M$ miało być najliczniejszym skojarzeniem.
 
 $\impliedby$ Nie wprost. Niech $M'$ będzie skojarzeniem w $G$ takim, że $|M'| > |M|$
-Niech $H$ będzie podgrafem grafu $G$ utworzonym z krawędzi z $M' \div M$ dokładniej $H = (V, M' \div M)$. W $H$ styczne wierzchołki są $\leq 2$ więc każda składowa $H$ jest cyklem lub ścieżką. 
+Niech $H$ będzie podgrafem grafu $G$ utworzonym z krawędzi z $M' \div M$ dokładniej $H = (V, M' \div M)$. W $H$ stopnie wierzchołków są $\leq 2$ więc każda składowa $H$ jest cyklem lub ścieżką. 
 
-$M,M'$ są skojarzeniami więc w $H$ nie ma cykli nieparzystych.
+$M,M'$ są skojarzeniami więc żadna składowa $H$ nie jest cyklem nieparzystym.
+Każda składowa $H$ jest ścieżką lub cyklem parzystym. Skoro $|M'| > |M|$ to w $H$ musi być co najmniej jedna składowa, która jest ścieżką, która zaczyna kończy się krawędzią z $M'$. Ta ścieżka jest ścieżką rozszerzającą względem $M$.
 
-//DWA ZDANIA OD ANI
-
-\paragraph{Algorytm znajdujący najliczniejsze skojarzenie w grafie dowolnym}
+\paragraph{Algorytm znajdujący najliczniejsze skojarzenie w grafie dwudzielnym}
 
 $G(V_1, V_2, E)$, $M \in E$ - skojarzenie
 
-Definiujemy bigraf $G_M$
+Definiujemy graf skierowany $G_M$
 $$G_M = (V_1 \cup V_2, E_M)$$ 
-$$E_M = \{uv : uv \in E-M, u \in V_1\} cup \{vu : uv \in M, u \in V_1, v \in V_2\}$$
+$$E_M = \{uv : uv \in E-M, u \in V_1\} \cup \{vu : uv \in M, u \in V_1, v \in V_2\}$$
 
 Przykład:
 
@@ -82,7 +81,7 @@ Całkowita złożoność wynosi $O(|E| \cdot |V|)$
 
 \subsection{Znajdowanie najliczniejszego skojarzenia w dowolnym grafie}
 
-Tw. Berge'a jest prawdziwe dla dowolnych grafów. Problem w przypadku grafów niedwudzielnych polega na trudności znajdowanie ścieżek rozszerzających. Nie możemy skonstruować digrafu $G_M$, bo nie ma naturalnego skierowania/podziału krawędzi.
+Tw. Berge'a jest prawdziwe dla dowolnych grafów. Problem w przypadku grafów niedwudzielnych polega na trudności znajdowania ścieżek rozszerzających. Nie możemy skonstruować digrafu $G_M$, bo nie ma naturalnego skierowania/podziału krawędzi.
 
 Zaczniemy od innego warunku dostatecznego najliczniejszości skojarzenia. Niech $c(G)$ oznacza liczbę składowych o nieparzystej liczbie wierzchołków grafu $G$.
 
@@ -94,13 +93,13 @@ to $M$ jest skojarzeniem najliczniejszym w $G$.
 
 \paragraph{Dowód:}
 
-Niech $M^*$ będzie najliczniejszym skojarzeniem w $G$, a $S \in V$. Niech $t = c(G-S)$.
+Niech $M^*$ będzie najliczniejszym skojarzeniem w $G$, a $S \subset V$. Niech $t = c(G-S)$.
 
 RYSUNEK
 
 $G_1,...,G_t$ - składowe nieparzystego rzędu grafu G-S
 
-Grafy $G_i$ mają nieparzystą liczbę wierzchołków, więc jeśli wszystkie wierzchołki w $G_i$ są pokryte przez $M^*$ to co najmniej jedna krawędź z tyk pokrywających krawędzi musi mieć koniec w S. Ale krawędzi z $G_i$ do $S$ jest w $M^*$ co najmniej $|S|$. Wobec tego jest co najmniej $t-|S| = c(G-S) - |S|$ niepokrytych przez $M^*$ wierzchołków w $G$ czyli 
+Grafy $G_i$ mają nieparzystą liczbę wierzchołków, więc jeśli wszystkie wierzchołki w $G_i$ są pokryte przez $M^*$ to co najmniej jedna krawędź z tych pokrywających krawędzi musi mieć koniec w S. Ale krawędzi z $G_i$ do $S$ jest w $M^*$ co najmniej $|S|$. Wobec tego jest co najmniej $t-|S| = c(G-S) - |S|$ niepokrytych przez $M^*$ wierzchołków w $G$ czyli 
 $$|V|-2|M^*| \geq c(G-S) - |S| \implies 2 |M^*| \leq |V| - c(G-S) + |S|$$
 
 Z założenia o najliczniejszości $M^*$ mamy
@@ -164,7 +163,7 @@ $y \not\in V(L) \implies y \in S \implies y$ jest pokryty przez $M$. Niech $yz \
 Gdyby $z \in V(L)$ to z Faktu 1 $y \in V(L)$. Czyli $z \not\in V(L)$.
 
 \paragraph{Fakt 3}
-Jeśli istnieją wierzchołki zewnętrzne $x_1, x_2$ należące do różnych drzew z $L$ i takie, że $x_1x_2 \in E(G)$ to $P_1 \cup \{x_1x_2\} \cup \P_2$, gdzie $P_i$ jest ścieżką od $x_i$ do korzenia w $L$, jest ścieżką rozszerzającą względem $M$.
+Jeśli istnieją wierzchołki zewnętrzne $x_1, x_2$ należące do różnych drzew z $L$ i takie, że $x_1x_2 \in E(G)$ to $P_1 \cup \{x_1x_2\} \cup P_2$, gdzie $P_i$ jest ścieżką od $x_i$ do korzenia w $L$, jest ścieżką rozszerzającą względem $M$.
 
 %patrz rysunek
 
