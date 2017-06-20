@@ -57,7 +57,7 @@ Algorytm jest w sposób oczywisty poprawny za wyjątkiem kwestii dlaczego w fazi
 
 Niech 
 $p=(x_p,y_p)$ i $q=(x_q,y_q)$,\tab \tab $y_p \leq y_q$
-pokażemy, że znajduje tę parę punktów.
+pokażemy, że algorytm znajduje tę parę punktów.
 
 \textbf{Dowód: }
 
@@ -67,9 +67,9 @@ Niech $r=(x_r,y_r)$ będzie jednym z nich.
 
 Ponieważ $d(p,q)<\delta$, więc $y_q-y_p = \vert y_p - y_q \vert \leq \sqrt{(x_p-x_q)^2+(y_p-y_q)^2}=d(p,q)<\delta$
 
-ponadto $y_p\leq y_c\leq y_q$, więc $y_r-y_p \leq y_q-y_p<\delta$, więc $y_r\leq y_p + \delta$
+ponadto $y_p\leq y_r\leq y_q$, więc $y_r-y_p \leq y_q-y_p<\delta$, więc $y_r\leq y_p + \delta$
 
-czyli co najmniej 9 punktów z $P$ znajduje się w prostokącie $=2\delta$x$\delta$ ograniczonym prostymi $y=y_p,\ y=y_p+\delta$
+czyli co najmniej 9 punktów z $P$ znajduje się w prostokącie $=2\delta$ x $\delta$ ograniczonym prostymi $y=y_p,\ y=y_p+\delta$
 
 Wtedy w lewej lub w prawej połowie prostokąta jest co najmniej 5 punktów z $P$. Dla ustalenia uwagi uznajemy, że to lewy kwadrat, wtedy jednak w $P_L$ są dwa punkty odległe o mniej niż $\delta$, bo nie da się w kwadracie $\delta \times \delta$ rozmieścić 5 punktów wzajemnie odległych o co najmniej $\delta$.
 
